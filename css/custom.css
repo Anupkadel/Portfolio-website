@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* common css */
+html,
+body{
+    margin:0;
+    padding:0;
+    font-family: "Arvo", serif;
+}
+
+/* header */
+.navbar-brand{
+    font-size: 2rem;
+}
+.nav-link{
+    font-size: 1.2rem;
+}
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #ffffff; /* White color for text */
+    height: 100vh;
+    overflow: hidden; /* Prevent scrollbars */
+    position: relative;
+}
+
+/* Particles.js Background */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place particles behind the content */
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(to right, #527cec, #1d4ed8); /* Gradient background */
+    color: white; /* White text for the header */
+    padding: 40px 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+/* Navigation Styling */
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white; /* White text for links */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffd700; /* Gold color on hover */
+}
+
+/* Main Content Section */
+main {
+    padding: 60px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6); /* Slight transparent background */
+    margin-top: 60px;
+}
+
+main h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+main p {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333; /* Dark footer background */
+    color: white; /* White text */
+    text-align: center;
+    padding: 10px 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+footer p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem; /* Adjust header font size for mobile */
+    }
+    nav ul li {
+        margin: 0 10px; /* Reduce margin for nav items on mobile */
+    }
+    main h2 {
+        font-size: 2rem; /* Smaller font size for main title */
+    }
+    main p {
+        font-size: 1.1rem; /* Adjust paragraph font size for readability */
+    }
+}
+
+/* Add some padding to the body to ensure the footer doesn't overlap */
+body {
+    padding-bottom: 40px; /* Prevent footer overlap */
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #ffffff; /* White color for text */
+    height: 100vh;
+    overflow: hidden; /* Prevent scrollbars */
+    position: relative;
+}
+
+
+#tagline{
+    margin-top: 1rem;
+    font-size: 2rem;
+    color: #000;
+    text-align: center;
+}
+
+#name{
+    margin-top: 16rem;
+    font-size: 4rem;
+    color: #000;
+    text-align: center;
+}
+
+#learn-more{
+    padding: .4rem 1rem;
+    max-width: 15rem;
+    margin: 0 auto;
+    display:block;
+    border: 2px solid #000;
+    border-radius: 1rem;
+}
