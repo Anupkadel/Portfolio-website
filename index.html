@@ -3,103 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audiophile News</title>
+    <title>My Quote Website</title>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: #121212;
-            color: #ddd;
             text-align: center;
+            background-color: #f8f9fa;
         }
-
-        /* Header */
         header {
-            background: #1f1f1f;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* News Container */
-        .news-container {
-            max-width: 800px;
-            margin: 30px auto;
-            text-align: left;
-        }
-
-        .news-article {
-            background: #1c1c1c;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
-        }
-
-        .news-article img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        .news-article h2 {
-            font-size: 22px;
-            margin-top: 10px;
-            color: #f1c40f;
-        }
-
-        .news-article p {
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        /* Footer */
-        footer {
-            background: #1f1f1f;
+            background: #343a40;
+            color: white;
             padding: 15px;
-            font-size: 14px;
         }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .news-container {
-                padding: 10px;
-            }
+        nav {
+            margin: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            padding: 10px;
+            color: #007bff;
+            cursor: pointer;
+            display: inline-block;
+        }
+        section {
+            display: none;
+            padding: 20px;
+        }
+        .active {
+            display: block;
+        }
+        blockquote {
+            font-size: 20px;
+            margin: 20px;
+            padding: 10px;
+            background: #ffffff;
+            border-left: 5px solid #007bff;
+        }
+        form {
+            margin: 20px;
+        }
+        textarea, input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background: #343a40;
+            color: white;
         }
     </style>
 </head>
 <body>
 
     <header>
-        🎧 Audiophile News Hub
+        <h1>Welcome to My Quote Collection</h1>
+        <p>Hi, I'm Anup Kadel. I love collecting and sharing inspirational quotes. Explore and enjoy!</p>
     </header>
 
-    <div class="news-container">
-        <div class="news-article">
-            <img src="headphones1.jpg" alt="High-End Headphones">
-            <h2>New High-End Headphones Released!</h2>
-            <p>Brand X has just launched its latest flagship headphones featuring revolutionary drivers and unparalleled sound quality.</p>
-        </div>
+    <nav>
+        <a onclick="showSection('home')">Home</a>
+        <a onclick="showSection('quotes')">Read Quotes</a>
+        <a onclick="showSection('suggest')">Suggest a Quote</a>
+    </nav>
 
-        <div class="news-article">
-            <img src="amp.jpg" alt="Audiophile Amplifier">
-            <h2>Are Tube Amps Still Worth It?</h2>
-            <p>We explore the world of vacuum tube amplifiers and whether they still hold an edge over solid-state alternatives.</p>
-        </div>
+    <!-- Home Section -->
+    <section id="home" class="active">
+        <p>Welcome to my collection of inspiring quotes. Click on "Read Quotes" to explore!</p>
+    </section>
 
-        <div class="news-article">
-            <img src="vinyl.jpg" alt="Vinyl Revival">
-            <h2>Vinyl Records Are Back!</h2>
-            <p>With streaming dominating the music industry, why are more people turning to vinyl for a richer audio experience?</p>
-        </div>
-    </div>
+    <!-- Quotes Section -->
+    <section id="quotes">
+        <h2>Quotes Collection</h2>
+        <blockquote>"The only limit to our realization of tomorrow is our doubts of today." - Franklin D. Roosevelt</blockquote>
+        <blockquote>"Success is not final, failure is not fatal: It is the courage to continue that counts." - Winston Churchill</blockquote>
+        <blockquote>"Believe you can and you're halfway there." - Theodore Roosevelt</blockquote>
+    </section>
+
+    <!-- Suggest a Quote Section -->
+    <section id="suggest">
+        <h2>Suggest a Quote</h2>
+        <form id="quoteForm">
+            <label for="quote">Your Quote:</label><br>
+            <textarea id="quote" required></textarea><br>
+            <label for="author">Author:</label><br>
+            <input type="text" id="author" required><br>
+            <button type="submit">Send</button>
+        </form>
+    </section>
 
     <footer>
-        &copy; 2025 Audiophile News | All Rights Reserved
+        <p>Thanks for visiting! Keep inspiring. 😊</p>
     </footer>
+
+    <script>
+        // Show only the selected section
+        function showSection(sectionId) {
+            document.querySelectorAll("section").forEach(section => {
+                section.classList.remove("active");
+            });
+            document.getElementById(sectionId).classList.add("active");
+        }
+
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("8b8_-Kd0NqGY82M1-"); // Your public key
+        })();
+
+        // Handle Quote Submission
+        document.getElementById("quoteForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let quote = document.getElementById("quote").value;
+            let author = document.getElementById("author").value;
+
+            let templateParams = {
+                to_email: "anupkadel7105@gmail.com", // Your email
+                quote_text: quote,
+                quote_author: author
+            };
+
+            emailjs.send("service_52ohkk4", "template_cd0ixlh", templateParams)
+                .then(function(response) {
+                    alert("Quote sent successfully!");
+                }, function(error) {
+                    alert("Failed to send quote.");
+                    console.error(error);
+                });
+        });
+    </script>
 
 </body>
 </html>
