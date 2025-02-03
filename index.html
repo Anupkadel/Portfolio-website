@@ -118,7 +118,7 @@
 
         // Initialize EmailJS
         (function() {
-            emailjs.init("8b8_-Kd0NqGY82M1-"); // Your public key
+            emailjs.init("8b8_-Kd0NqGY82M1-"); // Updated public key
         })();
 
         // Handle Quote Submission
@@ -129,12 +129,12 @@
             let author = document.getElementById("author").value;
 
             let templateParams = {
-                to_email: "anupkadel7105@gmail.com", // Your email
+                to_email: "anupkadel7105@gmail.com", // Updated email
                 quote_text: quote,
                 quote_author: author
             };
 
-            emailjs.send("service_52ohkk4", "template_cd0ixlh", templateParams)
+            emailjs.send("service_4sbgao6", "template_kcz1nfj", templateParams) // Updated service & template IDs
                 .then(function(response) {
                     alert("Quote sent successfully!");
                 }, function(error) {
