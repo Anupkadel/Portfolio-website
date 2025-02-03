@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Quote Website</title>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -104,7 +104,7 @@
     </section>
 
     <footer>
-        <p>Thanks for visiting! Keep inspiring. 😊</p>
+        <p>Thanks for visiting! Keep inspiring.</p>
     </footer>
 
     <script>
@@ -118,7 +118,7 @@
 
         // Initialize EmailJS
         (function() {
-            emailjs.init("8b8_-Kd0NqGY82M1-"); // Updated public key
+            emailjs.init("8b8_-Kd0NqGY82M1-"); // Your public key
         })();
 
         // Handle Quote Submission
@@ -129,16 +129,16 @@
             let author = document.getElementById("author").value;
 
             let templateParams = {
-                to_email: "anupkadel7105@gmail.com", // Updated email
                 quote_text: quote,
                 quote_author: author
             };
 
-            emailjs.send("service_4sbgao6", "template_kcz1nfj", templateParams) // Updated service & template IDs
+            emailjs.send("service_4sbgao6", "template_kcz1nfj", templateParams)
                 .then(function(response) {
                     alert("Quote sent successfully!");
+                    document.getElementById("quoteForm").reset(); // Clear form after submission
                 }, function(error) {
-                    alert("Failed to send quote.");
+                    alert("Failed to send quote. Please check your EmailJS settings.");
                     console.error(error);
                 });
         });
