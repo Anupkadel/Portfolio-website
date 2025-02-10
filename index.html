@@ -62,13 +62,6 @@
             border-left: 5px solid #007bff;
             font-style: italic;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            color: #000;
-        }
-
-        .dark blockquote {
-            background: #333;
-            color: #fff;
-            box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.1);
         }
 
         #quote-of-the-day {
@@ -80,12 +73,18 @@
             border-left: 5px solid #007bff;
             font-style: italic;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            color: #000;
         }
 
         .dark #quote-of-the-day {
             background: #333;
             color: white;
+        }
+
+        /* Fix for dark mode visibility of quotes */
+        .dark blockquote {
+            background: #333;
+            color: white;
+            border-left-color: #007bff;
         }
 
         form {
@@ -153,13 +152,14 @@
         }
 
         .sun-moon-icon {
-            font-size: 10px;
+            font-size: 10px; /* Smaller size for sun and moon */
             transition: font-size 0.3s;
         }
 
         .dark .sun-moon-icon {
-            font-size: 10px;
+            font-size: 10px; /* Smaller size in dark mode as well */
         }
+
     </style>
 </head>
 <body>
@@ -194,6 +194,11 @@
         <blockquote>"When life gives you lemonade, make lemon out of it life will be 'WTF!'" - Unknown</blockquote>
         <blockquote>"Watch a sunrise at least a day." - Unknown</blockquote>
         <blockquote>"Bravery is not having no fear, it is having fear and doing it anyway." - Unknown</blockquote>
+        <blockquote>"No need to take me home, I'm old enough to face the dawn." - Unknown</blockquote>
+        <blockquote>"Sometimes you won't let the things that make you sad, cause they are the only things that make you happy." - Unknown</blockquote>
+        <blockquote>"Tradition took away from her more than dead man." - Unknown</blockquote>
+        <blockquote>"Greatest loss in life is what lives inside us while we live." - Unknown</blockquote>
+        <blockquote>"It's okay to be scared, we have to do it anyway." - Unknown</blockquote>
     </section>
 
     <section id="suggest">
@@ -217,12 +222,13 @@
             const icon = document.getElementById("sun-moon-icon");
 
             if (document.body.classList.contains("dark")) {
-                icon.textContent = "🌜";
+                icon.textContent = "🌜"; // Moon icon for dark mode
             } else {
-                icon.textContent = "🌞";
+                icon.textContent = "🌞"; // Sun icon for light mode
             }
         });
 
+        // Show only the selected section
         function showSection(sectionId) {
             document.querySelectorAll("section").forEach(section => {
                 section.classList.remove("active");
@@ -230,20 +236,55 @@
             document.getElementById(sectionId).classList.add("active");
         }
 
+        // Quotes for Quote of the Day
         const dailyQuotes = [
             { text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
             { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
-            { text: "Do what you can, with what you have, where you are.", author: "Theodore Roosevelt" }
+            { text: "Do what you can, with what you have, where you are.", author: "Theodore Roosevelt" },
+            { text: "Happiness depends upon ourselves.", author: "Aristotle" },
+            { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+            { text: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" }
         ];
 
+        // Function to display a new quote every day
         function displayDailyQuote() {
             const today = new Date();
             const index = today.getDate() % dailyQuotes.length;
             const quote = dailyQuotes[index];
+
             document.getElementById("quote-of-the-day").innerHTML = `"${quote.text}" – ${quote.author}`;
         }
 
+        // Load Quote of the Day
         window.onload = displayDailyQuote;
+
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("8b8_-Kd0NqGY82M1-"); // Your public key
+        })();
+
+        // Handle Quote Submission
+        document.getElementById("quoteForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let quote = document.getElementById("quote").value;
+            let author = document.getElementById("author").value;
+
+            let templateParams = {
+                user_email: "anupkadel7105@gmail.com", // Your email address
+                quote_text: quote,
+                quote_author: author
+            };
+
+            emailjs.send("service_4sbgao6", "template_kcz1nfj", templateParams)
+                .then(function(response) {
+                    alert("Quote sent successfully!");
+                    document.getElementById("quoteForm").reset(); // Clear form after submission
+                }, function(error) {
+                    alert("Failed to send quote. Please check your EmailJS settings.");
+                    console.error(error);
+                });
+        });
     </script>
 
 </body>
