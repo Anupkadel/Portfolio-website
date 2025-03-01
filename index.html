@@ -106,13 +106,14 @@
 
         #theme-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 10px;
+            right: 10px;
             background: #007bff;
             color: white;
             border: 2px solid #007bff;
-            border-radius: 30px;
-            padding: 10px 20px;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 14px;
             cursor: pointer;
             font-weight: bold;
             transition: background 0.3s, transform 0.3s ease-in-out;
@@ -146,7 +147,7 @@
         <a onclick="showSection('home')">Home</a>
         <a onclick="showSection('quotes')">Read Quotes</a>
         <a onclick="showSection('poems')">Poems</a>
-        <a onclick="showSection('suggest')">Submit a Quote</a>
+        <a onclick="showSection('suggest')">Submit a Quote & Poem</a>
     </nav>
 
     <section id="home" class="active">
@@ -176,9 +177,9 @@
     </section>
 
     <section id="suggest">
-        <h2>Submit a Quote</h2>
+        <h2>Submit a Quote & Poem</h2>
         <form id="quoteForm">
-            <label for="quote">Your Quote:</label><br>
+            <label for="quote">Your Quote or Poem:</label><br>
             <textarea id="quote" required></textarea><br>
             <label for="author">Author:</label><br>
             <input type="text" id="author" required><br>
@@ -223,8 +224,8 @@
             let quote = document.getElementById("quote").value;
             let author = document.getElementById("author").value;
             emailjs.send("service_3ma3hlk", "template_75qlmds", { user_email: "bhupendrakadel7105@gmail.com", quote_text: quote, quote_author: author })
-                .then(() => alert("Quote sent successfully!"))
-                .catch(() => alert("Failed to send quote."));
+                .then(() => alert("Quote/Poem sent successfully!"))
+                .catch(() => alert("Failed to send."));
         });
     </script>
 
