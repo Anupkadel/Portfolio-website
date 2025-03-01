@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Quote & Poem Collection</title>
+    <title>My Quote Website</title>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         body {
@@ -106,36 +106,39 @@
 
         #theme-toggle {
             position: fixed;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             background: #007bff;
             color: white;
             border: 2px solid #007bff;
-            border-radius: 20px;
+            border-radius: 30px;
             padding: 5px 10px;
             cursor: pointer;
-            font-size: 14px;
+            font-weight: bold;
+            font-size: 12px;
+            transition: background 0.3s, transform 0.3s ease-in-out;
         }
 
-        .dark #theme-toggle {
-            background: #555;
-            border-color: #555;
-            color: #fff;
+        #theme-toggle:hover {
+            background: #0056b3;
+            transform: scale(1.1);
         }
+
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Welcome to Quote & Poem Collection</h1>
+        <h1>Welcome to Quote Collection</h1>
+        <p>Hi, I'm Anup Kadel. I love collecting and sharing quotes. Explore and enjoy!</p>
         <button id="theme-toggle">🌞</button>
     </header>
 
     <nav>
         <a onclick="showSection('home')">Home</a>
         <a onclick="showSection('quotes')">Read Quotes</a>
-        <a onclick="showSection('poems')">Read Poems</a>
-        <a onclick="showSection('suggest')">Submit Quote and Poem</a>
+        <a onclick="showSection('poems')">Poems</a>
+        <a onclick="showSection('suggest')">Submit Quote & Poem</a>
     </nav>
 
     <section id="home" class="active">
@@ -149,31 +152,23 @@
         <blockquote>"Always look people in the eyes, even they are blind just say I'm looking in your eyes." - Unknown</blockquote>
         <blockquote>"Do it today not in 2day." - Sigma Aagaman</blockquote>
         <blockquote>"It's not who I am underneath, but what I do that defines me." - Batman</blockquote>
-        <blockquote>"The beauty you see in others is a reflection of yours." - Unknown</blockquote>
+        <blockquote>"The beauty you see in other is a reflection of yours." - Unknown</blockquote>
         <blockquote>"True beauty shines not in appearances, but in the depth of one's character." - Someone</blockquote>
-        <blockquote>"When life gives you lemonade, make lemon out of it, life will be 'WTF!'" - Unknown</blockquote>
+        <blockquote>"When life gives you lemonade, make lemon out of it. Life will be 'WTF!'" - Unknown</blockquote>
         <blockquote>"Watch a sunrise at least a day." - Unknown</blockquote>
         <blockquote>"Sometimes you have to suffer the sins that you didn't even do." - Unknown</blockquote>
         <blockquote>"Bravery is not having no fear, it is having fear and doing it anyway." - Unknown</blockquote>
-        <blockquote>"No need to take me home, I'm old enough to face the dawn." - Unknown</blockquote>
-        <blockquote>"Sometimes you won't let the things that make you sad, because they are the only things that make you happy." - Unknown</blockquote>
-        <blockquote>"Tradition took away from her more than dead man." - Unknown</blockquote>
-        <blockquote>"Greatest loss in life is what lives inside us while we live." - Unknown</blockquote>
-        <blockquote>"It's okay to be scared, we have to do it anyway." - Unknown</blockquote>
     </section>
 
     <section id="poems">
-        <h2>Poem Collection</h2>
-        <blockquote>
-            She guessed my favorite color at one try but,<br> 
-            I never had a favorite color until she yelled yellow.
-        </blockquote>
+        <h2>Welcome to the Poem Collection</h2>
+        <blockquote>“She guessed my favourite colour at one try but, I never had a favourite colour until she yelled yellow.”</blockquote>
     </section>
 
     <section id="suggest">
-        <h2>Submit Quote and Poem</h2>
+        <h2>Submit Quote & Poem</h2>
         <form id="quoteForm">
-            <label for="quote">Your Quote or Poem:</label><br>
+            <label for="quote">Your Quote/Poem:</label><br>
             <textarea id="quote" required></textarea><br>
             <label for="author">Author:</label><br>
             <input type="text" id="author" required><br>
@@ -200,30 +195,41 @@
 
         const dailyQuotes = [
             { text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
-            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" }
+            { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+            { text: "Do what you can, with what you have, where you are.", author: "Theodore Roosevelt" }
         ];
 
         function displayDailyQuote() {
             const today = new Date();
             const index = today.getDate() % dailyQuotes.length;
-            document.getElementById("quote-of-the-day").innerHTML = `"${dailyQuotes[index].text}" – ${dailyQuotes[index].author}`;
+            const quote = dailyQuotes[index];
+            document.getElementById("quote-of-the-day").innerHTML = `"${quote.text}" – ${quote.author}`;
         }
 
         window.onload = displayDailyQuote;
 
-        emailjs.init("8b8_-Kd0NqGY82M1-");
+        (function() {
+            emailjs.init("8b8_-Kd0NqGY82M1-");
+        })();
 
         document.getElementById("quoteForm").addEventListener("submit", function(event) {
             event.preventDefault();
             let quote = document.getElementById("quote").value;
             let author = document.getElementById("author").value;
 
-            emailjs.send("service_3ma3hlk", "template_75qlmds", {
+            let templateParams = {
                 user_email: "anupakdel7105@gmail.com",
                 quote_text: quote,
                 quote_author: author
-            }).then(() => alert("Sent successfully!"))
-              .catch(() => alert("Failed to send."));
+            };
+
+            emailjs.send("service_4sbgao6", "template_kcz1nfj", templateParams)
+                .then(function(response) {
+                    alert("Submitted successfully!");
+                    document.getElementById("quoteForm").reset();
+                }, function(error) {
+                    alert("Failed to submit. Please check EmailJS settings.");
+                });
         });
     </script>
 
