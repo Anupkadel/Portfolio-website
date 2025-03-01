@@ -6,10 +6,17 @@
     <title>My Quote Website</title>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f8f9fa;
             transition: background 0.3s, color 0.3s;
@@ -44,9 +51,13 @@
             color: #0056b3;
         }
 
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
         section {
             display: none;
-            padding: 20px;
         }
 
         .active {
@@ -98,10 +109,10 @@
         }
 
         footer {
-            margin-top: 20px;
-            padding: 10px;
             background: #343a40;
             color: white;
+            padding: 10px;
+            margin-top: auto;
         }
 
         #theme-toggle {
@@ -123,7 +134,6 @@
             background: #0056b3;
             transform: scale(1.1);
         }
-
     </style>
 </head>
 <body>
@@ -141,43 +151,42 @@
         <a onclick="showSection('suggest')">Submit Quote & Poem</a>
     </nav>
 
-    <section id="home" class="active">
-        <h2>Quote of the Day</h2>
-        <blockquote id="quote-of-the-day"></blockquote>
-        <p>Click "Read Quotes" to explore more!</p>
-    </section>
+    <main>
+        <section id="home" class="active">
+            <h2>Quote of the Day</h2>
+            <blockquote id="quote-of-the-day"></blockquote>
+            <p>Click "Read Quotes" to explore more!</p>
+        </section>
 
-    <section id="quotes">
-        <h2>Quotes Collection</h2>
-        <blockquote>"Always look people in the eyes, even they are blind just say I'm looking in your eyes." - Unknown</blockquote>
-        <blockquote>"Do it today not in 2day." - Sigma Aagaman</blockquote>
-        <blockquote>"It's not who I am underneath, but what I do that defines me." - Batman</blockquote>
-        <blockquote>"The beauty you see in other is a reflection of yours." - Unknown</blockquote>
-        <blockquote>"True beauty shines not in appearances, but in the depth of one's character." - Someone</blockquote>
-        <blockquote>"When life gives you lemonade, make lemon out of it. Life will be 'WTF!'" - Unknown</blockquote>
-        <blockquote>"Watch a sunrise at least a day." - Unknown</blockquote>
-        <blockquote>"Sometimes you have to suffer the sins that you didn't even do." - Unknown</blockquote>
-        <blockquote>"Bravery is not having no fear, it is having fear and doing it anyway." - Unknown</blockquote>
-        <blockquote>"The only way to do great work is to love what you do." - Steve Jobs</blockquote>
-        <blockquote>"Opportunities don't happen, you create them." - Chris Grosser</blockquote>
-        <blockquote>"It does not matter how slowly you go as long as you do not stop." - Confucius</blockquote>
-    </section>
+        <section id="quotes">
+            <h2>Quotes Collection</h2>
+            <blockquote>"Always look people in the eyes, even they are blind just say I'm looking in your eyes." - Unknown</blockquote>
+            <blockquote>"Do it today not in 2day." - Sigma Aagaman</blockquote>
+            <blockquote>"It's not who I am underneath, but what I do that defines me." - Batman</blockquote>
+            <blockquote>"The beauty you see in other is a reflection of yours." - Unknown</blockquote>
+            <blockquote>"True beauty shines not in appearances, but in the depth of one's character." - Someone</blockquote>
+            <blockquote>"When life gives you lemonade, make lemon out of it. Life will be 'WTF!'" - Unknown</blockquote>
+            <blockquote>"Watch a sunrise at least a day." - Unknown</blockquote>
+            <blockquote>"Sometimes you have to suffer the sins that you didn't even do." - Unknown</blockquote>
+            <blockquote>"Bravery is not having no fear, it is having fear and doing it anyway." - Unknown</blockquote>
+        </section>
 
-    <section id="poems">
-        <h2>Welcome to the Poem Collection</h2>
-        <blockquote>“She guessed my favourite colour at one try but, I never had a favourite colour until she yelled yellow.”</blockquote>
-    </section>
+        <section id="poems">
+            <h2>Welcome to the Poem Collection</h2>
+            <blockquote>“She guessed my favourite colour at one try but, I never had a favourite colour until she yelled yellow.”</blockquote>
+        </section>
 
-    <section id="suggest">
-        <h2>Submit Quote & Poem</h2>
-        <form id="quoteForm">
-            <label for="quote">Your Quote/Poem:</label><br>
-            <textarea id="quote" required></textarea><br>
-            <label for="author">Author:</label><br>
-            <input type="text" id="author" required><br>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+        <section id="suggest">
+            <h2>Submit Quote & Poem</h2>
+            <form id="quoteForm">
+                <label for="quote">Your Quote/Poem:</label><br>
+                <textarea id="quote" required></textarea><br>
+                <label for="author">Author:</label><br>
+                <input type="text" id="author" required><br>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
 
     <footer>
         <p>Thanks for visiting! Keep inspiring.</p>
@@ -231,7 +240,7 @@
                     alert("Thank you for sharing. Keep inspiring ✅️");
                     document.getElementById("quoteForm").reset();
                 }, function(error) {
-                    alert("Sorry failed to submit try later ❌️.");
+                    alert("Sorry, failed to submit. Try later ❌️.");
                 });
         });
     </script>
