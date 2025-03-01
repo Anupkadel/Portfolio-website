@@ -129,8 +129,8 @@
 <body>
 
     <header>
-        <h1>Welcome to Quote Collection</h1>
-        <p>Hi, I'm Anup Kadel. I love collecting and sharing quotes. Explore and enjoy!</p>
+        <h1>Welcome to Quotes and Short Poem Collection</h1>
+        <p>Hi, I'm Anup Kadel. I love collecting and sharing quotes and short poems. Explore and enjoy!</p>
         <button id="theme-toggle">🌞</button>
     </header>
 
@@ -225,10 +225,10 @@
 
             emailjs.send("service_4sbgao6", "template_kcz1nfj", templateParams)
                 .then(function(response) {
-                    alert("Submitted successfully!");
+                    alert("Thank you for sharing. Keep inspiring ✅️");
                     document.getElementById("quoteForm").reset();
                 }, function(error) {
-                    alert("Failed to submit. Please check EmailJS settings.");
+                    alert("Sorry failed to submit try later ❌️.");
                 });
         });
     </script>
